@@ -1,13 +1,16 @@
 ﻿
+using Spike.PerimeterValidation.IdentityResolvers;
+
 namespace Spike.PerimeterValidation
 {
-    using Contracts.Attributes;
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using PostSharp.Aspects;
     using System.Reflection;
     using Contracts;
+    using Common.Attributes;
+    using Common.Security;
 
     [Serializable]
     public abstract class ValidationAspectBase : OnMethodBoundaryAspect
@@ -15,6 +18,22 @@ namespace Spike.PerimeterValidation
         public abstract void RegisterValidators();
 
         private List<TypeValidator> _typeValidators;
+
+        private readonly IIdentityResolver _identityResolver;
+
+        public ValidationAspectBase(IdentityResolverType identityResolver)
+        {
+            switch (identityResolver)
+            {
+                 case IdentityResolverType.WindowsIdentity: _identityResolver = new WindowsIdentityResolver();
+                    break;
+
+                default:
+                    _identityResolver = new AnonymousIdentityResolver();
+                    break;
+            }
+
+        }
 
         public List<TypeValidator> TypeValidators
         {
@@ -63,7 +82,7 @@ namespace Spike.PerimeterValidation
                 }
             }
         }
-        
+    
 
         public void Validate(Type type, string method, string arguement, object value)
         {
@@ -87,6 +106,21 @@ namespace Spike.PerimeterValidation
                 {
                     var parmInfo = args.Method.GetParameters()[x];
                     var parmValue = args.Arguments.GetArgument(x);
+
+                    if (parmInfo.GetCustomAttributes(typeof(IdentityAttribute)).Any())
+                    {
+                        if (!string.IsNullOrWhiteSpace(parmValue.ToString()))
+                        {
+                            continue;
+                        }
+                        
+                        var currentIdentity = _identityResolver.ResolveCurrentIdentity();
+
+                        parmValue = currentIdentity?.IdentityReference ?? string.Empty;
+                        args.Arguments.SetArgument(x, parmValue);
+
+                        continue;
+                    }
 
                     if (parmInfo.ParameterType.IsPrimitive)
                     {

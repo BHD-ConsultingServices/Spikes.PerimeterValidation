@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BookOrchestration.cs" />
+    <Compile Include="IdentityResolverOrchestration.cs" />
+    <Compile Include="SecurityOrchestration.cs" />
     <Compile Include="ValidationAspect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -54,9 +56,9 @@
       <Project>{8979a628-95c5-4a87-a2bc-d0f082c24cb6}</Project>
       <Name>Spike.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Spike.PerimeterValidation.Contracts\Spike.PerimeterValidation.Contracts.csproj">
+    <ProjectReference Include="..\Spike.PerimeterValidation.Contracts\Spike.PerimeterValidation.Common.csproj">
       <Project>{76461fa4-8cef-4713-b087-31d4dda002f3}</Project>
-      <Name>Spike.PerimeterValidation.Contracts</Name>
+      <Name>Spike.PerimeterValidation.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Spike.PerimeterValidation\Spike.PerimeterValidation.csproj">
       <Project>{1f4fd0ee-b227-4a91-a2b5-6a0f45adec7d}</Project>

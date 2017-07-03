@@ -3,6 +3,7 @@ namespace Spike.StubData.DAL
 {
     using System.Linq;
     using Contracts.Books;
+    using System.Collections.Generic;
 
     public static class StubAdapter
     {
@@ -18,6 +19,11 @@ namespace Spike.StubData.DAL
             {
                 var book = StubDatabase.Books.Single(b => b.Id == newBook.Id);
                 return book;
+            }
+
+            public static IEnumerable<Book> GetBooks()
+            {
+                return StubDatabase.Books;
             }
         }
     }

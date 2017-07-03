@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Cross Functional", "3. C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spike.PerimeterValidation", "Spike.PerimeterValidation\Spike.PerimeterValidation.csproj", "{1F4FD0EE-B227-4A91-A2B5-6A0F45ADEC7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spike.PerimeterValidation.Contracts", "Spike.PerimeterValidation.Contracts\Spike.PerimeterValidation.Contracts.csproj", "{76461FA4-8CEF-4713-B087-31D4DDA002F3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spike.PerimeterValidation.Common", "Spike.PerimeterValidation.Contracts\Spike.PerimeterValidation.Common.csproj", "{76461FA4-8CEF-4713-B087-31D4DDA002F3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -7,8 +7,8 @@
     <ProjectGuid>{76461FA4-8CEF-4713-B087-31D4DDA002F3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Spike.PerimeterValidation.Contracts</RootNamespace>
-    <AssemblyName>Spike.PerimeterValidation.Contracts</AssemblyName>
+    <RootNamespace>Spike.PerimeterValidation.Common</RootNamespace>
+    <AssemblyName>Spike.PerimeterValidation.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,9 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attributes\IdentityAttribute.cs" />
     <Compile Include="Attributes\MandatoryAttribute.cs" />
     <Compile Include="ErrorItem.cs" />
+    <Compile Include="ISecurityOrchestration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\CoreIdentity.cs" />
+    <Compile Include="Security\IdentityResolverBase.cs" />
+    <Compile Include="Security\IIdentityResolver.cs" />
     <Compile Include="ValidationException.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

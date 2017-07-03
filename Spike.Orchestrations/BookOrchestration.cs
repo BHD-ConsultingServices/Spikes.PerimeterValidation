@@ -2,13 +2,17 @@
 namespace Spike.Orchestrations
 {
     using System;
+    using System.Linq;
     using StubData.DAL;
     using Contracts.Books;
+    using PerimeterValidation;
+    using PerimeterValidation.Common.Attributes;
 
     public class BookOrchestration
     {
-        [ValidationAspect]
-        public Book AddBookRequest(AddBookRequest request, string originatorId)
+
+        [ValidationAspect(IdentityResolverType.Anonymous)]
+        public Book AddBookRequest(AddBookRequest request, [Identity]string originatorReference)
         {
             var newBook = new Book
             {
@@ -19,6 +23,12 @@ namespace Spike.Orchestrations
             };
 
             return StubAdapter.Books.AddBook(newBook);
+        }
+
+        [ValidationAspect(IdentityResolverType.Anonymous)]
+        public Book GetBook(Guid id, [Identity]string originatorReference)
+        {
+            return StubAdapter.Books.GetBooks().Single(b => b.Id == id);
         }
     }
 }

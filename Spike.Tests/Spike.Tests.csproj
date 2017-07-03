@@ -50,6 +50,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="IdentityResolverTests.cs" />
     <Compile Include="OrchestrationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -62,9 +63,13 @@
       <Project>{05c44d6e-85e7-499f-aba7-7e6aaf028a97}</Project>
       <Name>Spike.Orchestrations</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Spike.PerimeterValidation.Contracts\Spike.PerimeterValidation.Contracts.csproj">
+    <ProjectReference Include="..\Spike.PerimeterValidation.Contracts\Spike.PerimeterValidation.Common.csproj">
       <Project>{76461fa4-8cef-4713-b087-31d4dda002f3}</Project>
-      <Name>Spike.PerimeterValidation.Contracts</Name>
+      <Name>Spike.PerimeterValidation.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Spike.PerimeterValidation\Spike.PerimeterValidation.csproj">
+      <Project>{1f4fd0ee-b227-4a91-a2b5-6a0f45adec7d}</Project>
+      <Name>Spike.PerimeterValidation</Name>
     </ProjectReference>
     <ProjectReference Include="..\Spike.StubData\Spike.StubData.csproj">
       <Project>{5f73c40e-41b8-482b-97c5-64ad65e9d6fb}</Project>

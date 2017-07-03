@@ -1,8 +1,9 @@
 ﻿
+using Spike.PerimeterValidation.Common.Attributes;
+
 namespace Spike.Contracts.Books
 {
     using System;
-    using PerimeterValidation.Contracts.Attributes;
 
     public class BookModifyable
     {

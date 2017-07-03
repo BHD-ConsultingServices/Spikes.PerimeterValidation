@@ -1,10 +1,10 @@
 ﻿
-using Spike.PerimeterValidation.Contracts;
-
 namespace Spike.PerimeterValidation
 {
     using System;
     using System.Collections.Generic;
+    using System.Security.Principal;
+    using Contracts;
 
     public static class ValidationExtenders
     {
@@ -17,6 +17,5 @@ namespace Spike.PerimeterValidation
         {
             return type.IsValueType ? Activator.CreateInstance(type) : null;
         }
-
     }
 }

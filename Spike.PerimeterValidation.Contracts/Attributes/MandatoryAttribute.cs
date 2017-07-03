@@ -1,8 +1,8 @@
 ﻿
-namespace Spike.PerimeterValidation.Contracts.Attributes
+namespace Spike.PerimeterValidation.Common.Attributes
 {
     using System;
-    
+
     [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
     public class MandatoryAttribute : Attribute
     {
