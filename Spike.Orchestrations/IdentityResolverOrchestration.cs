@@ -1,4 +1,6 @@
 ﻿
+using Spike.PerimeterValidation.Common.Security;
+
 namespace Spike.Orchestrations
 {
     using PerimeterValidation;
@@ -7,15 +9,15 @@ namespace Spike.Orchestrations
     public class IdentityResolverOrchestration
     {
         [ValidationAspect(IdentityResolverType.Anonymous)]
-        public string ResolveAnnymousIdentity([Identity]string originatorReference = null)
+        public string ResolveAnnymousIdentity([Identity]CoreIdentity originator = null)
         {
-            return originatorReference;
+            return originator?.IdentityReference;
         }
 
         [ValidationAspect(IdentityResolverType.WindowsIdentity)]
-        public string ResolveWindowsIdentity([Identity]string originatorReference = null)
+        public string ResolveWindowsIdentity([Identity]CoreIdentity originator = null)
         {
-            return originatorReference;
+            return originator?.IdentityReference;
         }
     }
 }

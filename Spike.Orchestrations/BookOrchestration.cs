@@ -1,4 +1,6 @@
 ﻿
+using Spike.PerimeterValidation.Common.Security;
+
 namespace Spike.Orchestrations
 {
     using System;
@@ -12,7 +14,7 @@ namespace Spike.Orchestrations
     {
 
         [ValidationAspect(IdentityResolverType.Anonymous)]
-        public Book AddBookRequest(AddBookRequest request, [Identity]string originatorReference)
+        public Book AddBookRequest(AddBookRequest request, [Identity]CoreIdentity originatorReference)
         {
             var newBook = new Book
             {
@@ -26,7 +28,7 @@ namespace Spike.Orchestrations
         }
 
         [ValidationAspect(IdentityResolverType.Anonymous)]
-        public Book GetBook(Guid id, [Identity]string originatorReference)
+        public Book GetBook(Guid id, [Identity]CoreIdentity originatorReference)
         {
             return StubAdapter.Books.GetBooks().Single(b => b.Id == id);
         }

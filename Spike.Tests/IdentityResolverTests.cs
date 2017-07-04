@@ -1,4 +1,6 @@
 ﻿
+using Spike.PerimeterValidation.Common.Security;
+
 namespace Spike.Tests
 {
     using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -33,25 +35,25 @@ namespace Spike.Tests
         [TestMethod]
         public void TestAnonymousOverrideIdentityResolver()
         {
-            var testReference = "overrideAnnonymous";
+            var testOriginator = new CoreIdentity("overrideAnnonymous", true);
 
             var provider = new IdentityResolverOrchestration();
-            var identityReference = provider.ResolveAnnymousIdentity(testReference);
+            var identityReference = provider.ResolveAnnymousIdentity(testOriginator);
 
             Assert.IsFalse(string.IsNullOrWhiteSpace(identityReference));
-            Assert.AreEqual(testReference, identityReference);
+            Assert.AreEqual(testOriginator.IdentityReference, identityReference);
         }
         
         [TestMethod]
         public void TestWindowsOverrideIdentityResolver()
         {
-            var testReference = "overrideWindows";
+            var testOriginator = new CoreIdentity("overrideWindows", true);
 
             var provider = new IdentityResolverOrchestration();
-            var identityReference = provider.ResolveWindowsIdentity(testReference);
+            var identityReference = provider.ResolveWindowsIdentity(testOriginator);
 
             Assert.IsFalse(string.IsNullOrWhiteSpace(identityReference));
-            Assert.AreEqual(testReference, identityReference);
+            Assert.AreEqual(testOriginator.IdentityReference, identityReference);
         }
     }
 }

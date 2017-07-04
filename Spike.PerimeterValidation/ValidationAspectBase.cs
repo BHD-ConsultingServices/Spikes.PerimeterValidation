@@ -13,7 +13,7 @@ namespace Spike.PerimeterValidation
     using Common.Security;
 
     [Serializable]
-    public abstract class ValidationAspectBase : OnMethodBoundaryAspect
+    public abstract class ValidationAspectBase : MethodInterceptionAspect
     {
         public abstract void RegisterValidators();
 
@@ -98,7 +98,7 @@ namespace Spike.PerimeterValidation
         }
 
 
-        public override void OnEntry(MethodExecutionArgs args)
+        public override void OnInvoke(MethodInterceptionArgs args)
         {
             try
             {
@@ -109,14 +109,12 @@ namespace Spike.PerimeterValidation
 
                     if (parmInfo.GetCustomAttributes(typeof(IdentityAttribute)).Any())
                     {
-                        if (!string.IsNullOrWhiteSpace(parmValue.ToString()))
+                        if (parmValue != null)
                         {
                             continue;
                         }
-                        
-                        var currentIdentity = _identityResolver.ResolveCurrentIdentity();
 
-                        parmValue = currentIdentity?.IdentityReference ?? string.Empty;
+                        parmValue = _identityResolver.ResolveCurrentIdentity();
                         args.Arguments.SetArgument(x, parmValue);
 
                         continue;
@@ -139,7 +137,7 @@ namespace Spike.PerimeterValidation
                 // TODO: Add Logging
             }
 
-            base.OnEntry(args);
+            base.OnInvoke(args);
         }
     }
 }

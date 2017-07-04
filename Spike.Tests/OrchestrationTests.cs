@@ -5,11 +5,12 @@ namespace Spike.Tests
     using Orchestrations;
     using StubData.Builders;
     using PerimeterValidation.Contracts;
+    using PerimeterValidation.Common.Security;
 
     [TestClass]
     public class OrchestrationTests
     {
-        private const string TestOriginatorId = "TestUser01";
+        private static readonly CoreIdentity testOriginator = new CoreIdentity("TestUser01", true);
 
         [TestMethod]
         public void AddBookTestSuccess()
@@ -17,7 +18,7 @@ namespace Spike.Tests
             var provider = new BookOrchestration();
             var request = new BookBuilder().FiveDysfunctions().BuildAddRequest();
 
-            var book = provider.AddBookRequest(request, TestOriginatorId);
+            var book = provider.AddBookRequest(request, testOriginator);
             Assert.AreEqual(request.Title, book.Title);
         }
 
@@ -28,7 +29,7 @@ namespace Spike.Tests
             var provider = new BookOrchestration();
             var request = new BookBuilder().TheGoal().BuildAddRequest();
 
-            var book = provider.AddBookRequest(request, TestOriginatorId);
+            var book = provider.AddBookRequest(request, testOriginator);
             Assert.AreEqual(request.Title, book.Title);
         }
 
@@ -39,7 +40,7 @@ namespace Spike.Tests
             var provider = new BookOrchestration();
             var request = new BookBuilder().FiveDysfunctions().RemoveAuthor().BuildAddRequest();
 
-            var book = provider.AddBookRequest(request, TestOriginatorId);
+            var book = provider.AddBookRequest(request, testOriginator);
             Assert.AreEqual(request.Title, book.Title);
         }
     }
